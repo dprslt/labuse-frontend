@@ -12,6 +12,7 @@ import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { Device } from '../objects/Device';
+import DeviceMarker from './DeviceMarker';
 
 let DefaultIcon = L.icon({
     iconUrl: icon.src,
@@ -42,17 +43,7 @@ const MainMap: React.FC<MainMapProps> = ({ devices }) => {
                 if (!device.last_lat || !device.last_lon) {
                     return null;
                 }
-                return (
-                    <Marker
-                        position={[
-                            Number.parseFloat(device.last_lat),
-                            Number.parseFloat(device.last_lon),
-                        ]}
-                        key={device.id}
-                    >
-                        <Popup>{device.description}</Popup>
-                    </Marker>
-                );
+                return <DeviceMarker device={device} key={device.id} />;
             })}
 
             {/* <ZoomControl position="bottomleft" /> */}
