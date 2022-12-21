@@ -1,12 +1,8 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import dynamic from 'next/dynamic';
 import { Device } from '../objects/Device';
 import { NextPage } from 'next';
-import DeviceCard from '../components/DeviceCard';
 import DevicesList from '../components/DevicesList';
 import LabuseLogo from '../components/LabuseLogo';
 
@@ -19,6 +15,16 @@ type HomePageProps = {
 const HomePage: NextPage<HomePageProps> = ({ devices }) => {
     return (
         <div>
+            <Head>
+                <title>Balises Météo Labuse</title>
+                <link
+                    rel="icon"
+                    type="image/svg+xml"
+                    sizes="any"
+                    href="/favicon.png"
+                />
+            </Head>
+
             <MainMap devices={devices} />
             <DevicesList devices={devices} />
             <LabuseLogo />
