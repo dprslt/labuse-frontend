@@ -274,40 +274,19 @@ $slate: #3d3e4d;
 
     position: relative;
 
+    background-color: white;
+    border: solid 0.4em #345426de;
+    color: $accent;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     .wind-icon {
         font-size: 2.5em;
-        position: absolute;
-        top: 1.75em;
-        left: 1.8em;
-        margin-top: -1.5em;
-        margin-left: -1.5em;
         z-index: 1001;
-
-        color: $accent;
-    }
-
-    .donut-container {
-        position: absolute;
-        top: 2em;
-        left: 2em;
-
-        width: 4em;
-        height: 4em;
-
-        margin-left: -2em;
-        margin-top: -2em;
-    }
-    .avg-speed {
-        position: absolute;
-        z-index: 1002;
-        background-color: white;
-        border: solid 0.25em $accent;
-        border-radius: 50%;
-        width: 2em;
-        height: 2em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 }
 
@@ -329,9 +308,6 @@ $slate: #3d3e4d;
                 width: 20em !important;
             }
         }
-    }
-    .leaflet-popup-tip {
-        box-shadow: none;
     }
     .leaflet-popup-close-button {
         font-size: 2em;

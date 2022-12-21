@@ -11,20 +11,6 @@ type DeviceMarkerProps = {
 };
 
 const DeviceMarker: React.FC<DeviceMarkerProps> = ({ device }) => {
-    const windPerc = Math.round(
-        Math.min(
-            Math.log10((device.last_measurement?.wind_speed_avg || 0) / 10 + 1),
-            10
-        ) * 100
-    );
-
-    console.log(windPerc);
-
-    const dashArray =
-        windPerc === 0 ? '100 0' : `${windPerc} ${100 - windPerc}`;
-
-    console.log(dashArray);
-
     const content = (
         <div className="device-marker">
             <NavigationIcon
@@ -34,25 +20,6 @@ const DeviceMarker: React.FC<DeviceMarkerProps> = ({ device }) => {
                 }}
                 className="wind-icon"
             />
-
-            <svg className="donut-container" viewBox="-12 -12 24 24">
-                <circle
-                    className="donut-segment"
-                    cx="0"
-                    cy="0"
-                    r="10"
-                    fill="white"
-                    stroke="#345426"
-                    opacity={0.8}
-                    strokeWidth="2"
-                ></circle>
-            </svg>
-
-            {/* {device.last_measurement && (
-                <div className="avg-speed">
-                    {Math.round(device.last_measurement?.wind_heading_avg)}
-                </div>
-            )} */}
         </div>
     );
 
