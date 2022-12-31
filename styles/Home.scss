@@ -1,8 +1,12 @@
-$accent: #345426;
+$accent: hsl(102, 38%, 24%);
 $bg: #f0f2ef;
 $clear-one: #fffcfc;
 $clear-focus: white;
 $slate: #3d3e4d;
+
+body {
+    background-color: $clear-one;
+}
 
 .map-container {
     width: 100%;
@@ -312,5 +316,71 @@ $slate: #3d3e4d;
     .leaflet-popup-close-button {
         font-size: 2em;
         margin: 0.5em;
+    }
+}
+
+.device-details-page {
+    padding: 3em 4em;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    overflow: auto;
+
+    h1 {
+        color: $accent;
+        font-size: 4em;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    h3 {
+        color: $accent;
+        font-size: 2em;
+        margin-bottom: 0;
+    }
+
+    .description {
+        color: $accent;
+        opacity: 0.75;
+
+        margin-top: 1em;
+    }
+
+    .go-back {
+        border-radius: 50%;
+
+        margin-right: 2em;
+        padding: 1em;
+
+        transition: background-color ease-out 0.3s;
+
+        &:hover {
+            background-color: $bg;
+        }
+
+        svg {
+            font-size: 3rem;
+            color: $accent;
+        }
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        margin-bottom: 2em;
+
+        .header-text {
+            flex: 1;
+
+            .description {
+                margin: 0;
+            }
+        }
+    }
+    .wind-graph {
+        height: 500px;
     }
 }
