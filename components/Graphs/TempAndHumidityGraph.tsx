@@ -2,47 +2,33 @@ import { Serie, ResponsiveLine } from '@nivo/line';
 import React from 'react';
 import { Measurement } from '../../objects/Measurement';
 
-type WindGraphProps = {
+type TempAndHumidityGraphProps = {
     measurements: Array<Measurement>;
 };
 
-const WindGraph: React.FC<WindGraphProps> = ({ measurements }) => {
+const TempAndHumidityGraph: React.FC<TempAndHumidityGraphProps> = ({
+    measurements,
+}) => {
     const series: Array<Serie> = [
         {
-            id: 'Rafales Min',
-            color: 'hsl(102, 38%, 85%)',
-            data: measurements.map((m) => ({
-                x: new Date(m.timestamp),
-                y: m.wind_speed_min,
-            })),
-        },
-        {
-            id: 'Moyenne',
-            color: 'hsl(102, 38%, 24%)',
-            data: measurements.map((m) => ({
-                x: new Date(m.timestamp),
-                y: m.wind_speed_avg,
-            })),
-        },
-        {
-            id: 'Rafales Max',
+            id: 'Humidité',
             color: 'hsl(102, 31%, 75%)',
             data: measurements.map((m) => ({
                 x: new Date(m.timestamp),
-                y: m.wind_speed_max,
+                y: m.humidity,
             })),
         },
         {
-            id: 'Orientation',
-            color: 'hsl(102, 20%, 45%)',
+            id: 'Température',
+            color: 'hsl(102, 38%, 24%)',
             data: measurements.map((m) => ({
                 x: new Date(m.timestamp),
-                y: m.wind_heading_avg,
+                y: m.temperature,
             })),
         },
     ];
     return (
-        <div className="wind-graph">
+        <div className="temp-graph">
             <ResponsiveLine
                 colors={series.map((s) => s.color as string)}
                 data={series}
@@ -58,14 +44,13 @@ const WindGraph: React.FC<WindGraphProps> = ({ measurements }) => {
                     max: 'auto',
                     reverse: false,
                 }}
-                yFormat={(value) => `${value}`}
                 enableSlices="x"
                 axisTop={null}
                 axisRight={{
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Orientation °',
+                    legend: 'Humidité (%)',
                     legendOffset: 40,
                     legendPosition: 'middle',
                 }}
@@ -81,17 +66,14 @@ const WindGraph: React.FC<WindGraphProps> = ({ measurements }) => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Vitesse (km/h)',
+                    legend: 'Température (°C)',
                     legendOffset: -40,
                     legendPosition: 'middle',
                 }}
-                // useMesh={true}
-                // tooltip={(props) => {
-                //     return <span>{`${props.point.y} km/h`}</span>;
-                // }}
+                enablePoints={false}
             />
         </div>
     );
 };
 
-export default WindGraph;
+export default TempAndHumidityGraph;

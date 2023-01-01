@@ -9,6 +9,9 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { ResponsiveLine, Serie } from '@nivo/line';
 import WindGraph from '../../components/Graphs/WindGraph';
+import TempAndHumidityGraph from '../../components/Graphs/TempAndHumidityGraph';
+import DeviceCard from '../../components/DeviceCard';
+import PressureGraph from '../../components/Graphs/PressureGraph';
 
 type DevicePageProps = {
     device: Device;
@@ -41,11 +44,19 @@ const DevicePage: React.FC<DevicePageProps> = ({ device, measurements }) => {
                     <p className="description">{device.description}</p>
                 </div>
             </div>
+
+            <DeviceCard device={device} />
             {/* <pre>{JSON.stringify(device, null, 4)}</pre> */}
             {/* <pre>{JSON.stringify(measurements, null, 4)}</pre> */}
 
             <h3>Vent</h3>
+            {/* TODO séparer les deux graphs */}
             <WindGraph measurements={measurements} />
+            <h3>Température et humidité</h3>
+            {/* TODO séparer les deux graph */}
+            <TempAndHumidityGraph measurements={measurements} />
+            <h3>Pression Athmosphérique</h3>
+            <PressureGraph measurements={measurements} />
         </div>
     );
 };
