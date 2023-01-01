@@ -45,7 +45,8 @@ const DevicePage: React.FC<DevicePageProps> = ({ device, measurements }) => {
                 </div>
             </div>
 
-            <DeviceCard device={device} />
+            {/* TODO add readtime data */}
+
             {/* <pre>{JSON.stringify(device, null, 4)}</pre> */}
             {/* <pre>{JSON.stringify(measurements, null, 4)}</pre> */}
 
