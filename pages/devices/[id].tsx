@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 import Head from 'next/head';
 import { ResponsiveLine, Serie } from '@nivo/line';
+import WindGraph from '../../components/Graphs/WindGraph';
 
 type DevicePageProps = {
     device: Device;
@@ -18,32 +19,6 @@ const DevicePage: React.FC<DevicePageProps> = ({ device, measurements }) => {
     const router = useRouter();
     const { id } = router.query;
 
-    const series: Array<Serie> = [
-        {
-            id: 'Rafales Min',
-            color: 'hsl(231, 70%, 30%)',
-            data: measurements.map((m) => ({
-                x: new Date(m.timestamp),
-                y: m.wind_speed_min,
-            })),
-        },
-        {
-            id: 'Avg',
-            color: 'hsl(102, 38%, 24%)',
-            data: measurements.map((m) => ({
-                x: new Date(m.timestamp),
-                y: m.wind_speed_avg,
-            })),
-        },
-        {
-            id: 'Rafales Max',
-            color: 'hsl(11, 70%, 70%)',
-            data: measurements.map((m) => ({
-                x: new Date(m.timestamp),
-                y: m.wind_speed_max,
-            })),
-        },
-    ];
     return (
         <div className="device-details-page">
             <Head>
@@ -70,50 +45,7 @@ const DevicePage: React.FC<DevicePageProps> = ({ device, measurements }) => {
             {/* <pre>{JSON.stringify(measurements, null, 4)}</pre> */}
 
             <h3>Vent</h3>
-
-            <div className="wind-graph">
-                <ResponsiveLine
-                    data={series}
-                    margin={{ top: 10, right: 110, bottom: 50, left: 60 }}
-                    xScale={{
-                        format: '%Y-%m-%d %H:%M:%S.%L%Z',
-                        type: 'time',
-                    }}
-                    xFormat="time:%d/%m %H:%M:%S"
-                    yScale={{
-                        type: 'linear',
-                        min: 'auto',
-                        max: 'auto',
-                        stacked: true,
-                        reverse: false,
-                    }}
-                    yFormat={(value) => `${value} km/h`}
-                    enableSlices="x"
-                    axisTop={null}
-                    axisRight={null}
-                    axisBottom={{
-                        tickSize: 5,
-                        tickPadding: 5,
-                        tickRotation: 0,
-                        format: '%d/%m %H:%M',
-                        // legend: 'Time',
-                        legendOffset: 36,
-                        legendPosition: 'middle',
-                    }}
-                    axisLeft={{
-                        tickSize: 5,
-                        tickPadding: 5,
-                        tickRotation: 0,
-                        legend: 'Vitesse (km/h)',
-                        legendOffset: -40,
-                        legendPosition: 'middle',
-                    }}
-                    useMesh={true}
-                    // tooltip={(props) => {
-                    //     return <span>{`${props.point.y} km/h`}</span>;
-                    // }}
-                />
-            </div>
+            <WindGraph measurements={measurements} />
         </div>
     );
 };
